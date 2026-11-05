@@ -326,16 +326,16 @@ private struct TonesTab: View {
                 }
             }
             List {
-                ForEach($settings.data.toneOverrides) { $override in
+                ForEach($settings.data.toneOverrides) { $item in
                     HStack {
-                        Text(override.bundleId).font(.system(.body, design: .monospaced))
+                        Text(item.bundleId).font(.system(.body, design: .monospaced))
                         Spacer()
-                        Picker("", selection: $override.tone) {
+                        Picker("", selection: $item.tone) {
                             ForEach(Tone.allCases) { Text($0.label).tag($0) }
                         }
                         .frame(width: 190)
                         Button {
-                            settings.data.toneOverrides.removeAll { $0.id == override.id }
+                            settings.data.toneOverrides.removeAll { $0.id == item.id }
                         } label: { Image(systemName: "trash") }
                         .buttonStyle(.borderless)
                     }
